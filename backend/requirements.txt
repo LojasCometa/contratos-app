@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+python-multipart
+requests
+sqlalchemy
+python-docx
+docxtpl
+Pillow
+PyPDF2
+reportlab
+gunicorn # Servidor de produção
+python-dotenv # Para ler o arquivo .env
+
+

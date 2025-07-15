@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      # NOVO: Especifica o Dockerfile de produção
+      dockerfile: Dockerfile
+    ports:
+      # MODIFICADO: A porta interna do Nginx é 80
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    # NOVO: Define a variável de ambiente para a URL da API
+    environment:
+      - REACT_APP_API_URL=http://contratos.lojascometa.com.br/api
+
+  backend:
+    build:
+      context: ./backend
+    # NOVO: Comando para iniciar com Gunicorn (servidor de produção)
+    command: gunicorn -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 main:app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/contratos_gerados:/app/contratos_gerados # MODIFICADO: caminho corrigido
+      - ./backend/database:/app/database # NOVO: Volume para a base de dados
+      # O config.json não precisa de volume se estiver no build context
+    # NOVO: Adicionar referência ao ficheiro .env
+    env_file:
+      - ./backend/.env
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

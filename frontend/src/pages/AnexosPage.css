@@ -1,0 +1,64 @@
+/* Estilo unificado para AnexosPage e ConsultaPage */
+
+/* A classe container-anexos foi removida e agora usamos a de ConsultaPage */
+/* A classe header-anexos foi removida e agora usamos a de ConsultaPage */
+
+.grid-anexos {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-top: 30px; /* Adicionado para separar do header */
+}
+
+.grid-anexos h2 {
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.botoes-anexo {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Estilizando os botões de anexo para se parecerem com o botão de consulta */
+.botoes-anexo button {
+  padding: 10px 20px;
+  background-color: red; /* Mesma cor */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px; /* Mesmo tamanho de fonte */
+}
+
+.preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.preview-item {
+  width: 150px;
+  text-align: center;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.preview-item img {
+  width: 100%;
+  height: 120px; /* Altura fixa */
+  object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+.preview-item p {
+  font-size: 12px;
+  word-wrap: break-word;
+}

@@ -1,0 +1,81 @@
+.container-consulta {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f8f8;
+  padding: 30px;
+  min-height: 100vh;
+  color: #333;
+}
+
+.header-consulta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid #ddd;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.logo-area img {
+  width: 100px;
+  height: auto;
+}
+
+.titulo h1 {
+  font-size: 28px;
+  color: #222;
+}
+
+.titulo .marca {
+  color: red;
+  font-weight: bold;
+}
+
+.consulta-box {
+  display: flex;
+  gap: 10px;
+}
+
+.consulta-box input {
+  padding: 10px;
+  font-size: 16px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.consulta-box button {
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.grid-resultado {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.grid-resultado table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+.grid-resultado td {
+  padding: 10px;
+  border: 1px solid #eee;
+}
+
+.grid-resultado button {
+  background-color: black;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
