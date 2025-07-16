@@ -83,7 +83,6 @@
   gap: 60px 40px;
 }
 
-/* --- CORREÇÃO FINAL DA ÁREA DE ASSINATURA --- */
 .linha-assinatura {
   cursor: pointer;
   display: flex;
@@ -113,19 +112,24 @@
   object-fit: contain;
 }
 
+/* [CORREÇÃO]: Garante que todos os campos de texto tenham a mesma altura */
 .nome-assinatura {
   width: 100%;
   border-top: 1px solid #000;
   padding-top: 5px;
   text-align: center;
   font-size: 10pt;
-  margin-top: auto; /* Garante que fique no fundo se não houver assinatura */
+  margin-top: auto;
+  min-height: 2.5em; /* Garante espaço para duas linhas, alinhando as bordas */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .nome-assinatura p {
     margin: 0;
+    line-height: 1.2;
 }
-/* --- FIM DA CORREÇÃO --- */
 
 /* Estilos do Modal de Assinatura */
 .modal-assinatura {

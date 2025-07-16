@@ -58,31 +58,29 @@ export default function ConsultaPage() {
   };
 
   return (
-    <div className="container-consulta">
-      <header className="header-consulta">
-        <div className="logo-area">
-          <img src="https://lojascometa.com.br/i/logo_02_img_1@2x.png" alt="Logo Cometa" />
+    <div className="consulta-page-content">
+        <div className="consulta-form-container">
+            <h1>Gerar Novo Contrato</h1>
+            <p>Insira o código do cliente para buscar os dados e iniciar a geração do contrato.</p>
+            <div className="consulta-box">
+                <input
+                    type="text"
+                    placeholder="Digite o código do cliente"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleConsultar()}
+                />
+                <button onClick={handleConsultar} disabled={loading}>
+                    {loading ? "Consultando..." : "Consultar"}
+                </button>
+            </div>
         </div>
-        
-        {/* TÍTULO REMOVIDO CONFORME SOLICITADO */}
 
-        <div className="consulta-box">
-          <input
-            type="text"
-            placeholder="Digite o código do cliente"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <button onClick={handleConsultar} disabled={loading}>
-            {loading ? "Consultando..." : "Consultar"}
-          </button>
-        </div>
-      </header>
-
-      {error && <p className="error-message">{error}</p>}
+      {error && <div className="error-message">{error}</div>}
 
       {cliente && (
         <div className="grid-resultado">
+          <h2>Dados do Cliente</h2>
           <table>
             <tbody>
               <tr><td><strong>Nome:</strong></td><td>{cliente.nome_comprador}</td></tr>
@@ -91,18 +89,19 @@ export default function ConsultaPage() {
               <tr><td><strong>Limite de Crédito:</strong></td><td>R$ {parseFloat(cliente.limite_credito).toFixed(2)}</td></tr>
             </tbody>
           </table>
-          {/* DIV COM ESTILO PARA ADICIONAR ESPAÇAMENTO (PADDING) */}
-          <div className="botoes-acao" style={{ display: 'flex', gap: '10px', marginTop: '15px' }}>
-            <button onClick={irParaAnexos}>Enviar Anexos</button>
+          <div className="botoes-acao">
+            <button onClick={irParaAnexos} className="anexos-btn">
+                Anexar Documentos
+            </button>
             <button
-              style={{ backgroundColor: anexosConfirmados ? "red" : "grey" }}
+              className="contrato-btn"
               onClick={irParaContrato}
               disabled={!anexosConfirmados}
             >
               Gerar Contrato
             </button>
           </div>
-          {!anexosConfirmados && <p className="aviso-anexos">É necessário enviar os anexos para poder gerar o contrato.</p>}
+          {!anexosConfirmados && <p className="aviso-anexos">É necessário anexar os documentos para habilitar a geração do contrato.</p>}
         </div>
       )}
     </div>

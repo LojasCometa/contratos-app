@@ -28,7 +28,12 @@ const SignatureModal = ({ onConfirm, onClear, nomeAssinante }) => {
                     <SignatureCanvas
                         ref={sigRef}
                         penColor="black"
-                        canvasProps={{ width: 400, height: 150, className: 'sigCanvas' }}
+                        canvasProps={{ 
+                            width: 400, 
+                            height: 150, 
+                            className: 'sigCanvas',
+                            willReadFrequently: true 
+                        }}
                         minWidth={0.5}
                         maxWidth={2.0}
                     />
@@ -109,7 +114,9 @@ const ContratoPage = () => {
             const result = await gerarContrato(formData);
             if (result && result.contrato_url) {
                 alert("Contrato gerado com sucesso!");
-                window.open(`http://localhost:8000${result.contrato_url}`, '_blank');
+                // [CORREÇÃO]: Abre a URL relativa retornada pelo backend.
+                // O navegador irá construí-la corretamente a partir do endereço atual.
+                window.open(result.contrato_url, '_blank');
                 sessionStorage.removeItem(`anexosOk_${cliente.id}`);
                 navigate('/');
             } else {
@@ -125,7 +132,6 @@ const ContratoPage = () => {
 
     if (!cliente) return <div>Cliente não encontrado. Volte e consulte novamente.</div>;
 
-    // Determina o nome a ser exibido no modal
     let nomeParaModal = "Assinatura";
     if (assinaturaAtiva === 'cliente') {
         nomeParaModal = cliente.nome_comprador;

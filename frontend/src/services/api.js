@@ -1,10 +1,28 @@
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+const API_URL = "/api";
+
+// NOVA FUNÇÃO DE LOGIN
+export async function login(user, password) {
+    const response = await fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user, password }),
+    });
+
+    if (!response.ok) {
+        // Tenta ler a mensagem de erro do backend, se houver
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.detail || 'Falha na autenticação');
+    }
+    return response.json();
+}
 
 export async function consultarCliente(clienteId) {
     const response = await fetch(`${API_URL}/clientes/${clienteId}`);
     if (!response.ok) {
         const errorData = await response.json().catch(() => null);
-        throw new Error(errorData?.detail || 'Cliente não encontrado');
+        throw new Error(errorData.detail || 'Cliente não encontrado');
     }
     return response.json();
 }
@@ -16,7 +34,7 @@ export async function gerarContrato(formData) {
     });
     if (!response.ok) {
         const errorData = await response.json().catch(() => null);
-        throw new Error(errorData?.detail || 'Falha ao gerar o contrato no servidor.');
+        throw new Error(errorData.detail || 'Falha ao gerar o contrato no servidor.');
     }
     return response.json();
 }
